@@ -1,4 +1,4 @@
-Branch devCRUD 
+stage 1 CRUD 
 
 - This is a basic sample of CRUD operation using spring boot. It contains the following layers
 
@@ -7,12 +7,9 @@ Branch devCRUD
  - SERVICE LAYER
  
  
- BRANCH devCRUDFORWAR
- 
- - This has CRUD and packaged into WAR file for deployment to application server like jboss or apache.
  
  
- BRANCH devCRUDWAREMAIL
+ stage 2 CRUD with EMAIL
  
  - This change the pom to add dependecy for email 
  - additional package util 
@@ -21,7 +18,7 @@ Branch devCRUD
  - on the browser login to your gmail account and switch on the allow less secure apps
      https://myaccount.google.com/u/0/lesssecureapps?pli=1&pageId=none
      
- BRANCH devCRUDWAREMAILREPORT
+ stage 3 CRUD with EMAIL REPORT
  
  - This change the pom to add dependency for report utility
  - additional classes added in package contractor.util
@@ -40,12 +37,12 @@ Branch devCRUD
      
     
      
-BRANCH devCRUDWAREMAILREPORTREST
+stage 4 CRUD EMAIL REPORT and REST API
 
   - This branch contain RestController classes
   - It can only be tested on Postman
 
-BRANCH devCRUDWAREMAILREPORTRESTLOGIN
+stage 5 CRUD EMAIL REPORT REST API AND LOGIN
 
   - Login functionality added
   - needs password encryption
