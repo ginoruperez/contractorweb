@@ -53,6 +53,7 @@ stage 5 CRUD EMAIL REPORT REST API AND LOGIN
  ON WINDOWS 
  - open the mysql workbench
  - start the server
+ - run the .sql file to create the db
  
  WHEN RUNNING THE APPLICATION ON THE WEB
  
