@@ -3,7 +3,13 @@
  */
 package com.gino.contractor.entities;
 
+import java.util.Set;
+
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+
 
 /**
  * @author gino.ruperez
@@ -19,7 +25,9 @@ public class User  extends AbstractEntity {
 	private String last_name;
 	private String email;
 	private String password;
-	
+	@ManyToMany
+	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+	private Set<Role> roles;
 	
 	
 	public String getFirst_name() {
@@ -51,6 +59,13 @@ public class User  extends AbstractEntity {
 		return "User [first_name=" + first_name + ", last_name=" + last_name + ", email=" + email + "]";
 	}
 	
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
+	}
 	
 
 }

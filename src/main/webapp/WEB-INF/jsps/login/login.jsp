@@ -11,7 +11,7 @@
 <form action="loginResult" method ="post">
 <pre>
  User Name : <input type="text" name="email"/>
- Password : <input type="text" name ="password"/>
+ Password : <input type="password" name ="password"/>
  <input type="submit" value="login"/>
  ${msg}
  
