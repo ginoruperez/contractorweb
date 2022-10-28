@@ -37,5 +37,22 @@ Untracked files:
         src/main/java/com/gino/contractor/service/SecurityServiceImpl.java
         src/main/java/com/gino/contractor/service/UserDetailsServiceImpl.java
 
+devphase1 Updates 26-Oct-2022
+1. Modified and pushed 
+        modified:   contractor.sql
+        modified:   pom.xml
+        modified:   src/main/java/com/gino/contractor/controllers/ContractorController.java
+        modified:   src/main/java/com/gino/contractor/entities/User.java
+        
+        Added
+
+        src/main/java/com/gino/contractor/entities/Role.java
+        src/main/java/com/gino/contractor/repos/RoleRepository.java
+        src/main/java/com/gino/contractor/security/
+        src/main/java/com/gino/contractor/service/SecurityService.java
+        src/main/java/com/gino/contractor/service/SecurityServiceImpl.java
+        src/main/java/com/gino/contractor/service/UserDetailsServiceImpl.java
+
+
 
 
