@@ -55,8 +55,7 @@ public class ContractorRESTController {
 		return contractorRepository.save(contractor);
 	}
 	
-	
-	
+
 	/**
 	 * This is REST for updating records in table
 	 * 
