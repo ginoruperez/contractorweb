@@ -5,10 +5,11 @@ use contractordb;
 DROP table if exists user;
 
 CREATE TABLE user (id int NOT NULL auto_increment,
-first_name varchar(20),
-last_name varchar(20),
-email VARCHAR(20),
-password varchar(20),
+firstname varchar(20),
+lastname varchar(20),
+email VARCHAR(100),
+password varchar(100),
+subscription varchar(20)
 PRIMARY KEY (id),
 UNIQUE KEY (email)
 );
