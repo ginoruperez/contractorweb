@@ -21,8 +21,8 @@ public class User  extends AbstractEntity {
 	
 	
 	
-	private String first_name;
-	private String last_name;
+	private String firstname;
+	private String lastname;
 	private String email;
 	private String password;
 	@ManyToMany
@@ -30,17 +30,17 @@ public class User  extends AbstractEntity {
 	private Set<Role> roles;
 	
 	
-	public String getFirst_name() {
-		return first_name;
+	public String getFirstName() {
+		return firstname;
 	}
-	public void setFirst_name(String first_name) {
-		this.first_name = first_name;
+	public void setFirstName(String firstname) {
+		this.firstname = firstname;
 	}
 	public String getLast_name() {
-		return last_name;
+		return lastname;
 	}
-	public void setLast_name(String last_name) {
-		this.last_name = last_name;
+	public void setLastName(String lastname) {
+		this.lastname = lastname;
 	}
 	public String getEmail() {
 		return email;
@@ -56,7 +56,7 @@ public class User  extends AbstractEntity {
 	}
 	@Override
 	public String toString() {
-		return "User [first_name=" + first_name + ", last_name=" + last_name + ", email=" + email + "]";
+		return "User [firstname=" + firstname + ", lastname=" + lastname + ", email=" + email + "]";
 	}
 	
 	public Set<Role> getRoles() {

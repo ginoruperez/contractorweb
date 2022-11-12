@@ -10,8 +10,8 @@
 <h2>Create Contractor Application User</h2>
 <form action="registerUser" method="post">
 <pre>
- First Name: <input type="text" name="first_name"/>
- Last Name: <input type="text" name="last_name"/>
+ First Name: <input type="text" name="firstname"/>
+ Last Name: <input type="text" name="lastname"/>
  User Name: <input type="text" name="email"/>
  Password <input type="password" name="password"/>
  <input type="submit" value="register"/>

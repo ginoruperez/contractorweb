@@ -219,8 +219,8 @@ public class ContractorController {
 //	
 	
 	//@RequestMapping("/loginResult")
-	@RequestMapping(value = "/loginResult1", method = RequestMethod.POST)
-	public ResponseEntity<String> login1(@RequestParam("email") String email, @RequestParam("password") String password,
+	@RequestMapping(value = "/loginResult", method = RequestMethod.POST)
+	public String login(@RequestParam("email") String email, @RequestParam("password") String password,
 			ModelMap modelMap) {
 
 		try {
@@ -230,8 +230,8 @@ public class ContractorController {
 			
 			//if (user.getPassword().equals(password)){
 			if (loginResponse) {
-				this.displayContractors(modelMap);
-				//return "displayContractors";
+				//this.displayContractors(modelMap);
+				return "displayContractors";
 			} else {
 				modelMap.addAttribute("msg", "Invalid password. Please try again");
 				LOGGER.warn("Inside loginResult - Invalid Password");
@@ -242,43 +242,43 @@ public class ContractorController {
 			LOGGER.error("Exception inside ContractorController login "+ e);
 		}
 		
-		return new ResponseEntity<>("{\"token\""+":\""+password+"\"}" , HttpStatus.OK) ;
+		//return new ResponseEntity<>("{\"token\""+":\""+password+"\"}" , HttpStatus.OK) ;
 
-		// return "login/login";
+		return "login/login";
 
 	}
 	
 	
 	
 	//@RequestMapping("/loginResult")
-		@PutMapping(value = "/loginResult")
-		public ResponseEntity<String> login(@RequestBody User user,
-				ModelMap modelMap) {
-
-			try {
-				user = userRepository.findByEmail(user.getEmail());
-				boolean loginResponse = securityService.login(user.getEmail(), user.getPassword());
-				LOGGER.info("Inside login() and the email is: " + user.getEmail() + " loginresponse" + loginResponse);
-				
-				//if (user.getPassword().equals(password)){
-				if (loginResponse) {
-					this.displayContractors(modelMap);
-					//return "displayContractors";
-				} else {
-					modelMap.addAttribute("msg", "Invalid password. Please try again");
-					LOGGER.warn("Inside loginResult - Invalid Password");
-
-				}
-			}catch(Exception e) {
-				modelMap.addAttribute("msg", "Invalid User. Please try again");
-				LOGGER.error("Exception inside ContractorController login "+ e);
-			}
-			
-			return new ResponseEntity<>("{\"token\""+":\""+user.getPassword()+"\"}" , HttpStatus.OK) ;
-
-			// return "login/login";
-
-		}
-	
+//		@PutMapping(value = "/loginResult")
+//		public ResponseEntity<String> login(@RequestBody User user,
+//				ModelMap modelMap) {
+//
+//			try {
+//				user = userRepository.findByEmail(user.getEmail());
+//				boolean loginResponse = securityService.login(user.getEmail(), user.getPassword());
+//				LOGGER.info("Inside login() and the email is: " + user.getEmail() + " loginresponse" + loginResponse);
+//				
+//				//if (user.getPassword().equals(password)){
+//				if (loginResponse) {
+//					this.displayContractors(modelMap);
+//					//return "displayContractors";
+//				} else {
+//					modelMap.addAttribute("msg", "Invalid password. Please try again");
+//					LOGGER.warn("Inside loginResult - Invalid Password");
+//
+//				}
+//			}catch(Exception e) {
+//				modelMap.addAttribute("msg", "Invalid User. Please try again");
+//				LOGGER.error("Exception inside ContractorController login "+ e);
+//			}
+//			
+//			return new ResponseEntity<>("{\"token\""+":\""+user.getPassword()+"\"}" , HttpStatus.OK) ;
+//
+//			// return "login/login";
+//
+//		}
+//	
 
 }
