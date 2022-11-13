@@ -9,8 +9,7 @@
 <body>
 
 	<form action="saveCon" method="post">
-		<pre>
-		Id: <input type="text" name="id"  />
+		<pre>		
 		Name: <input type="text" name="name" /> 
 		Location:<input type="text" name="location" />
 		Specialties: <input type="text" name="specialties" /> 

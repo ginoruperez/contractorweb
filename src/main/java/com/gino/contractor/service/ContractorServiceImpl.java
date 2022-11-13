@@ -43,4 +43,11 @@ public class ContractorServiceImpl implements ContractorService {
 
 	}
 
+//	@Override
+//	public List<Contractor> getContractorByLocation(int location) {
+//		return repository.findByLocation(location);
+//	}
+	
+	
+
 }

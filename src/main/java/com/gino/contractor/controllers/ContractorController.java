@@ -222,7 +222,7 @@ public class ContractorController {
 	@RequestMapping(value = "/loginResult", method = RequestMethod.POST)
 	public String login(@RequestParam("email") String email, @RequestParam("password") String password,
 			ModelMap modelMap) {
-
+	    String urlReturn = "";
 		try {
 			User user = userRepository.findByEmail(email);
 			boolean loginResponse = securityService.login(email, password);
@@ -230,12 +230,13 @@ public class ContractorController {
 			
 			//if (user.getPassword().equals(password)){
 			if (loginResponse) {
-				//this.displayContractors(modelMap);
-				return "displayContractors";
+				LOGGER.warn("login response ok - displayContractors");
+				this.displayContractors(modelMap);				
+				urlReturn="displayContractors";
 			} else {
 				modelMap.addAttribute("msg", "Invalid password. Please try again");
 				LOGGER.warn("Inside loginResult - Invalid Password");
-
+				urlReturn="login/login";
 			}
 		}catch(Exception e) {
 			modelMap.addAttribute("msg", "Invalid User. Please try again");
@@ -244,7 +245,7 @@ public class ContractorController {
 		
 		//return new ResponseEntity<>("{\"token\""+":\""+password+"\"}" , HttpStatus.OK) ;
 
-		return "login/login";
+		return urlReturn;
 
 	}
 	

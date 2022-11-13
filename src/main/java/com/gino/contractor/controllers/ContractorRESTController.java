@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.gino.contractor.entities.Contractor;
 import com.gino.contractor.repos.ContractorRepository;
+import com.gino.contractor.service.ContractorService;
 
 /**
  * @author gino.ruperez
@@ -28,6 +29,9 @@ import com.gino.contractor.repos.ContractorRepository;
 @CrossOrigin
 public class ContractorRESTController {
 
+	@Autowired
+	ContractorService service;
+	
 	@Autowired
 	ContractorRepository contractorRepository;
 	/**
@@ -100,6 +104,18 @@ public class ContractorRESTController {
 		return contractorRepository.findOne(id);
 	}
 	
+	/**
+	 * Search by Location 
+	 * 
+	 * @param location
+	 * @return
+	 */
+//	@RequestMapping("/{location}")
+//	public List<Contractor> getContractorByLocation(@RequestParam("location") String location, ModelMap modelMap) {
+//		List<Contractor> contractor = service.getContractorByLocation(location);
+//		modelMap.addAttribute("contractor", contractor);
+//		return contractor;
+//	}
 	
-	
-}
+
+	}

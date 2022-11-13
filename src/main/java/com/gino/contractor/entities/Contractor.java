@@ -12,7 +12,7 @@ public class Contractor {
 	private String location;
 	private String specialties;
 	private int size;
-	private String rate;
+	private float rate;
 	private String owner;
 
 	public int getId() {
@@ -55,11 +55,11 @@ public class Contractor {
 		this.size = size;
 	}
 
-	public String getRate() {
+	public Float getRate() {
 		return rate;
 	}
 
-	public void setRate(String rate) {
+	public void setRate(Float rate) {
 		this.rate = rate;
 	}
 
@@ -73,7 +73,7 @@ public class Contractor {
 
 	@Override
 	public String toString() {
-		return "Contractor [Id=" + id + ", name=" + name + ", location=" + location + ", specialties=" + specialties
+		return "Contractor [Id=" +" "+  ", name=" + name + ", location=" + location + ", specialties=" + specialties
 				+ ", size=" + size + ", rate=" + rate + ", owner=" + owner + "]";
 	}
 
