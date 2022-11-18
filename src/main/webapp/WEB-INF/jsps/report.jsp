@@ -8,5 +8,6 @@
 </head>
 <body>
 <img src="pieChart.jpeg">
+<a href="index.html" >Back to Home Page</a>
 </body>
 </html>

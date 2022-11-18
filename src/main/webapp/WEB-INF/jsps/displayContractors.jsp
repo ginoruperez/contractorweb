@@ -36,7 +36,7 @@
 	</table>
 	
 	<a href="showCreate" >Add Contractor</a>
-	
+	<a href="index.html" >Back to Home Page</a>
 
 </body>
 </html>
