@@ -15,6 +15,4 @@ public interface ContractorService {
 
 	List<Contractor> getAllContractor();
 
-//	List<Contractor> getContractorByLocation(int location);
-	
 }

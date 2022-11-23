@@ -39,15 +39,8 @@ public class ContractorServiceImpl implements ContractorService {
 
 	@Override
 	public Contractor getContractorById(int id) {
-		return repository.findOne(id);
+		return repository.findById(id).get();
 
 	}
-
-//	@Override
-//	public List<Contractor> getContractorByLocation(int location) {
-//		return repository.findByLocation(location);
-//	}
-	
-	
 
 }

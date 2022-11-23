@@ -13,7 +13,7 @@ import com.gino.contractor.entities.User;
  * @author gino.ruperez
  *
  */
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface UserRepository extends JpaRepository<User, Integer> {
 	
 	// the spring data will be responsible for creating query to look into db thanks to spring data
 	// email is a field in the User table, follow the naming convention. 

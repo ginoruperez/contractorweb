@@ -22,9 +22,5 @@ public interface ContractorRepository extends JpaRepository<Contractor, Integer>
 	@Query("select location, count(location) from Contractor group by location")
 	public List<Object[]> findLocationAndLocationCount();
 
-	
-	
-//	@Query("select id,name,location,specialties,size,rate,owner from Contractor where id = 2 ")
-//	public List<Contractor> findByLocation(int id);
 
 }

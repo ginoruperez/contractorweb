@@ -22,13 +22,13 @@ public class AbstractEntity {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)  //this tells to increment the id in the database
-	private Long id;
+	private Integer id;
 
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

@@ -5,10 +5,10 @@ import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 
-import org.springframework.security.core.GrantedAuthority;
+
 
 @Entity
-public class Role extends AbstractEntity implements GrantedAuthority{
+public class Role extends AbstractEntity {
 
 	private String name;
 	@ManyToMany(mappedBy = "roles")
@@ -30,9 +30,5 @@ public class Role extends AbstractEntity implements GrantedAuthority{
 		this.users = users;
 	}
 
-	@Override
-	public String getAuthority() {
-		return name;
-	}
 
 }

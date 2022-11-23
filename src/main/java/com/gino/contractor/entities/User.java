@@ -6,6 +6,7 @@ package com.gino.contractor.entities;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -16,20 +17,30 @@ import javax.persistence.ManyToMany;
  *
  */
 @Entity
-public class User  extends AbstractEntity {
+public class User   {
 	
 	
 	
-	
+	@Id
+	private int id;
 	private String firstname;
 	private String lastname;
 	private String email;
 	private String password;
+	
 	@ManyToMany
 	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles;
 	
 	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public String getFirstName() {
 		return firstname;
 	}

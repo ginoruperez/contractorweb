@@ -7,21 +7,12 @@ import javax.servlet.ServletContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.gino.contractor.service.SecurityService;
 import com.gino.contractor.entities.Contractor;
 import com.gino.contractor.entities.User;
 import com.gino.contractor.repos.ContractorRepository;
@@ -32,13 +23,8 @@ import com.gino.contractor.util.PDFGenerator;
 import com.gino.contractor.util.ReportUtil;
 
 @Controller
-@CrossOrigin
 public class ContractorController {
 
-
-	@Autowired
-	private SecurityService securityService;
-	
 	@Autowired
 	ContractorService service;
 
@@ -68,9 +54,6 @@ public class ContractorController {
 	
 	
 	private static final Logger LOGGER  = LoggerFactory.getLogger(ContractorController.class);
-	
-	@Autowired
-	private BCryptPasswordEncoder encoder;
 
 	@RequestMapping("/showCreate")
 	public String showCreate() {
@@ -95,10 +78,10 @@ public class ContractorController {
 		pdfGenerator.generateContractor(contractorSaved, "contractor"+contractorSaved.getId());
 		
 		//initiate the email call
-//		String msg = "Contractor saved with id: " + contractorSaved.getId();
-//		modelMap.addAttribute("msg", msg);
-//		emailUtil.sendEmail("grsharedemail@gmail.com", "Contractor Saved",
-//				"Contractor Saved Successfully and about to return a response");
+		String msg = "Contractor saved with id: " + contractorSaved.getId();
+		modelMap.addAttribute("msg", msg);
+		emailUtil.sendEmail("grsharedemail@gmail.com", "Contractor Saved",
+				"Contractor Saved Successfully and about to return a response");
 		LOGGER.info("Inside saveContractor");
 		return "createContractor";
 	}
@@ -170,15 +153,18 @@ public class ContractorController {
 		return "login/createUser";
 	}
 
-	//@RequestMapping("/registerUser")
-	@RequestMapping(value = "/registerUser", method = RequestMethod.POST)
-	public String showCreateUserPage(@ModelAttribute("user") User user) {
-		user.setPassword(encoder.encode(user.getPassword()));
-		userRepository.save(user);
-		LOGGER.info("Inside RegisterUser "+user);
+	@RequestMapping("/registerUser")
+	public String showCreateUserPage(@ModelAttribute("user") User user,ModelMap modelMap) {
+		User userSaved= userRepository.save(user);
+		String msg = "User saved with id: " + userSaved.getId();
+		
+		LOGGER.info("Inside RegisterUser "+user + " "+msg);
 		return "login/login";
 	}
 
+	
+		
+	
 	/**
 	 * in Requestmapping value should be equal to the action in login.jsp
 	 * 
@@ -191,95 +177,33 @@ public class ContractorController {
 		return "login/login";
 	}
 
-	@RequestMapping("/showLogin")
-	public String showLoginPage() {
-		LOGGER.info("Inside showLoginPage()");
-		return "login/login";
-	}
-	
-	
 	// Modelmap is responsible for sending values to be used by jsp, the value=login
 	// is action in login.jsp
 	// @RequestMapping(value="login", method=RequestMethod.POST)
-	
-//	@RequestMapping(value = "/login", method = RequestMethod.POST)
-//	public String login(@RequestParam("email") String email, @RequestParam("password") String password,
-//			ModelMap modelMap) {
-//		boolean loginResponse = securityService.login(email, password);
-//		LOGGER.info("Inside login() and the email is: " + email);
-//		if (loginResponse) {
-//			return "displayContractors";
-//		} else {
-//			modelMap.addAttribute("msg", "Invalid user name or password .Please try again.");
-//		}
-//
-//		return "login/login";
-//
-//	}
-//	
-	
-	//@RequestMapping("/loginResult")
-	@RequestMapping(value = "/loginResult", method = RequestMethod.POST)
+	@RequestMapping("/loginResult")
 	public String login(@RequestParam("email") String email, @RequestParam("password") String password,
 			ModelMap modelMap) {
-	    String urlReturn = "";
+
 		try {
 			User user = userRepository.findByEmail(email);
-			boolean loginResponse = securityService.login(email, password);
-			LOGGER.info("Inside login() and the email is: " + email + " loginresponse" + loginResponse);
 			
-			//if (user.getPassword().equals(password)){
-			if (loginResponse) {
-				LOGGER.warn("login response ok - displayContractors");
-				this.displayContractors(modelMap);				
-				urlReturn="displayContractors";
+			if (user.getPassword().equals(password)){
+				this.displayContractors(modelMap);
+				return "displayContractors";
 			} else {
 				modelMap.addAttribute("msg", "Invalid password. Please try again");
 				LOGGER.warn("Inside loginResult - Invalid Password");
-				urlReturn="login/login";
+
 			}
 		}catch(Exception e) {
 			modelMap.addAttribute("msg", "Invalid User. Please try again");
 			LOGGER.error("Exception inside ContractorController login "+ e);
 		}
 		
-		//return new ResponseEntity<>("{\"token\""+":\""+password+"\"}" , HttpStatus.OK) ;
+		
 
-		return urlReturn;
+		return "login/login";
 
 	}
-	
-	
-	
-	//@RequestMapping("/loginResult")
-//		@PutMapping(value = "/loginResult")
-//		public ResponseEntity<String> login(@RequestBody User user,
-//				ModelMap modelMap) {
-//
-//			try {
-//				user = userRepository.findByEmail(user.getEmail());
-//				boolean loginResponse = securityService.login(user.getEmail(), user.getPassword());
-//				LOGGER.info("Inside login() and the email is: " + user.getEmail() + " loginresponse" + loginResponse);
-//				
-//				//if (user.getPassword().equals(password)){
-//				if (loginResponse) {
-//					this.displayContractors(modelMap);
-//					//return "displayContractors";
-//				} else {
-//					modelMap.addAttribute("msg", "Invalid password. Please try again");
-//					LOGGER.warn("Inside loginResult - Invalid Password");
-//
-//				}
-//			}catch(Exception e) {
-//				modelMap.addAttribute("msg", "Invalid User. Please try again");
-//				LOGGER.error("Exception inside ContractorController login "+ e);
-//			}
-//			
-//			return new ResponseEntity<>("{\"token\""+":\""+user.getPassword()+"\"}" , HttpStatus.OK) ;
-//
-//			// return "login/login";
-//
-//		}
-//	
 
 }
