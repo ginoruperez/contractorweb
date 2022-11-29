@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gino.contractor.entities.Contractor;
+import com.gino.contractor.entities.Role;
 import com.gino.contractor.repos.ContractorRepository;
+import com.gino.contractor.repos.RoleRepository;
 
 /**
  * @author gino.ruperez
@@ -30,6 +32,10 @@ public class ContractorRESTController {
 
 	@Autowired
 	ContractorRepository contractorRepository;
+	
+	@Autowired
+	RoleRepository roleRepository;
+	
 	/**
 	 * To test this in postman , select GET then type http://localhost:8080/locations
 	 * Then in Headers key=Accept value=json
@@ -101,6 +107,11 @@ public class ContractorRESTController {
 		return contractorRepository.findById(id).get();
 	}
 	
+	
+	@GetMapping("/role/{id}")
+	public Role getRole(@PathVariable("id") int id) {
+		return roleRepository.findById(id).get();
+	}
 	
 	
 }

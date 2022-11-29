@@ -27,7 +27,7 @@ public class ReportUtilImpl implements ReportUtil {
 
 		// convert the object into image like jpeg
 		try {
-			ChartUtilities.saveChartAsJPEG(new File(path+"/pieChart.jpeg"), chart, 300, 300);
+			ChartUtilities.saveChartAsJPEG(new File(path+"/pieChart.jpeg"), chart, 900, 600);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
