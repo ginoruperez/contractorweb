@@ -48,12 +48,12 @@ FOREIGN KEY (role_id)
 REFERENCES role(id)
 );
 
-insert into role values(1,'ADMIN')
+insert into role values(1,'ADMIN');
+insert into role values(2,'ADMIN');
 
 
---exclude this
+-- exclude this, run after adding user with password
 insert into user_role values(1,1);
 insert into user_role values(2,1);
-insert into user_role values(3,1);
 
 
