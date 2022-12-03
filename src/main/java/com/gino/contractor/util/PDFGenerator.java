@@ -7,7 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import com.gino.contractor.controllers.ContractorController;
 import com.gino.contractor.entities.Contractor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;

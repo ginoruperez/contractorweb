@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.gino.contractor.controllers;
 
 import java.util.List;

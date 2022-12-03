@@ -68,23 +68,25 @@ public class ContractorController {
 	 * 
 	 * @param contractor
 	 * @param modelMap
-	 * @return
+	 * @return String value that corresponds to the name of jsp  
 	 */
 	@RequestMapping("/saveCon")
 	public String saveContractor(@ModelAttribute("contractor") Contractor contractor, ModelMap modelMap) {
 		Contractor contractorSaved = service.saveContractor(contractor);
 		
 		//call the pdfGenerator
-		pdfGenerator.generateContractor(contractorSaved, "contractor"+contractorSaved.getId());
+		//pdfGenerator.generateContractor(contractorSaved, "contractor"+contractorSaved.getId());
 		
 		//initiate the email call
-		String msg = "Contractor saved with id: " + contractorSaved.getId();
-		modelMap.addAttribute("msg", msg);
-		emailUtil.sendEmail("grsharedemail@gmail.com", "Contractor Saved",
-				"Contractor Saved Successfully and about to return a response");
+//		String msg = "Contractor saved with id: " + contractorSaved.getId();
+//		modelMap.addAttribute("msg", msg);
+//		emailUtil.sendEmail("grsharedemail@gmail.com", "Contractor Saved",
+//				"Contractor Saved Successfully and about to return a response");
 		LOGGER.info("Inside saveContractor");
 		return "createContractor";
 	}
+	
+	
 
 	@RequestMapping("/displayContractors")
 	public String displayContractors(ModelMap modelMap) {
@@ -95,7 +97,7 @@ public class ContractorController {
 	}
 
 	/**
-	 * the @RequestParam is used to get the value of id from the el on
+	 * the @RequestParam is used to get the value of id from the el
 	 * displayContractor.jsp the ModelMap is responsible for sending the response to
 	 * jsp file to be consumed using el
 	 * 
@@ -144,9 +146,7 @@ public class ContractorController {
 	}
 
 	// this section is for creation and login page
-
 	// @RequestMapping(value = "createUser", method = RequestMethod.POST)
-
 	@RequestMapping("/createUser")
 	public String showCreateUserPage() {
 		LOGGER.info("Inside CreateUser shwoCreateUserPage");

@@ -11,7 +11,7 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
  * then here extends SpringBootServletInitialize
  * then add protected SpringApplicationBuilder configure method like below ..
  * 
- * @author gino
+ * @author Gino Ruperez
  *
  */
 @SpringBootApplication
@@ -21,6 +21,11 @@ public class ContractorwebApplication extends SpringBootServletInitializer {
 		return builder.sources(ContractorwebApplication.class);
 	}
 
+	/**
+	 * This is the main method to start the backend application 
+	 * 
+	 * @param args is an optional parameter only, by default its none
+	 */
 	public static void main(String[] args) {
 		SpringApplication.run(ContractorwebApplication.class, args);
 	}

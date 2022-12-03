@@ -70,7 +70,8 @@ BRANCH devCRUDWAREMAILREPORTRESTLOGIN
   then save - this will call the savcon which will call PdfGenerator (rename the file as .pdf)  and  Email utility
   
 
-
+dev3  - First stable branch with all the functionality of CRUD and Presentation Layer.  This is being used by FRONT-END REACT
+ 
 
 
  
