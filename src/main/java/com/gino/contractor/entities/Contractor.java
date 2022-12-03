@@ -3,6 +3,12 @@ package com.gino.contractor.entities;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+/**
+ * This is a Java Bean for Contractor which map to contractor table in Contractor Database
+ * 
+ * @author Gino Ruperez
+ *
+ */
 @Entity
 public class Contractor {
 

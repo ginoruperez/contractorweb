@@ -13,6 +13,8 @@ import javax.persistence.ManyToMany;
 
 
 /**
+ * This is a java bean for User Entity
+ * 
  * @author gino.ruperez
  *
  */

@@ -5,7 +5,12 @@ import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 
-
+/**
+ * This a java bean for Role Entity, each of the property is mapped to role table in Contractor Database
+ * 
+ * @author Gino Ruperez
+ *
+ */
 
 @Entity
 public class Role extends AbstractEntity {

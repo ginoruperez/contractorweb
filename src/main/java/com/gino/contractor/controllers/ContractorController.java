@@ -18,9 +18,15 @@ import com.gino.contractor.entities.User;
 import com.gino.contractor.repos.ContractorRepository;
 import com.gino.contractor.repos.UserRepository;
 import com.gino.contractor.service.ContractorService;
-import com.gino.contractor.util.EmailUtil;
 import com.gino.contractor.util.PDFGenerator;
 import com.gino.contractor.util.ReportUtil;
+
+/**
+ * This is the main class that provides access to database.  It inherits the Service, Repository and Utility classes
+ * 
+ * @author Gino Ruperez
+ *
+ */
 
 @Controller
 public class ContractorController {
@@ -35,23 +41,23 @@ public class ContractorController {
 	ReportUtil reportUtil;
 
 	/**
-	 * this is responsible for creation of user in contractor database
+	 * This is responsible for creation of user in contractor database
 	 */
 	@Autowired
 	UserRepository userRepository;
 
 	/**
-	 * responsible for the path of the chart to be read by jsp
+	 * Responsible for the path of the chart to be read by jsp
 	 */
 	@Autowired
 	ServletContext sc;
 	
+	/**
+	 * Responsible for generating the pdf file
+	 */
 	@Autowired
 	PDFGenerator pdfGenerator;
 
-	@Autowired
-	EmailUtil emailUtil;
-	
 	
 	private static final Logger LOGGER  = LoggerFactory.getLogger(ContractorController.class);
 
@@ -72,16 +78,7 @@ public class ContractorController {
 	 */
 	@RequestMapping("/saveCon")
 	public String saveContractor(@ModelAttribute("contractor") Contractor contractor, ModelMap modelMap) {
-		Contractor contractorSaved = service.saveContractor(contractor);
-		
-		//call the pdfGenerator
-		//pdfGenerator.generateContractor(contractorSaved, "contractor"+contractorSaved.getId());
-		
-		//initiate the email call
-//		String msg = "Contractor saved with id: " + contractorSaved.getId();
-//		modelMap.addAttribute("msg", msg);
-//		emailUtil.sendEmail("grsharedemail@gmail.com", "Contractor Saved",
-//				"Contractor Saved Successfully and about to return a response");
+		service.saveContractor(contractor);
 		LOGGER.info("Inside saveContractor");
 		return "createContractor";
 	}
@@ -117,7 +114,8 @@ public class ContractorController {
 		return "displayContractors";
 
 	}
-
+	
+	
 	@RequestMapping("/showUpdate")
 	public String showUpdate(@RequestParam("id") int id, ModelMap modelMap) {
 		Contractor contractor = service.getContractorById(id);
@@ -125,7 +123,21 @@ public class ContractorController {
 		LOGGER.info("Inside showUpdate page");
 		return "updateContractor";
 	}
-
+	
+	
+	@RequestMapping("/generatePdf")
+	public String generatePdf(@RequestParam("id") int id, ModelMap modelMap) {
+		Contractor contractor = service.getContractorById(id);
+		modelMap.addAttribute("contractor", contractor);
+		
+		//call the pdfGenerator
+		pdfGenerator.generateContractor(contractor, "contractor_"+contractor.getId()+".pdf");
+				
+		LOGGER.info("Inside generatePdf page");
+		return "reportContractor";
+	}
+	
+	
 	@RequestMapping("/updateContractor")
 	public String updateContractor(@ModelAttribute("contractor") Contractor contractor, ModelMap modelMap) {
 		service.updateContractor(contractor);
@@ -145,8 +157,6 @@ public class ContractorController {
 		return "report";
 	}
 
-	// this section is for creation and login page
-	// @RequestMapping(value = "createUser", method = RequestMethod.POST)
 	@RequestMapping("/createUser")
 	public String showCreateUserPage() {
 		LOGGER.info("Inside CreateUser shwoCreateUserPage");
@@ -161,8 +171,6 @@ public class ContractorController {
 		LOGGER.info("Inside RegisterUser "+user + " "+msg);
 		return "login/login";
 	}
-
-	
 		
 	
 	/**
@@ -177,9 +185,7 @@ public class ContractorController {
 		return "login/login";
 	}
 
-	// Modelmap is responsible for sending values to be used by jsp, the value=login
-	// is action in login.jsp
-	// @RequestMapping(value="login", method=RequestMethod.POST)
+
 	@RequestMapping("/loginResult")
 	public String login(@RequestParam("email") String email, @RequestParam("password") String password,
 			ModelMap modelMap) {

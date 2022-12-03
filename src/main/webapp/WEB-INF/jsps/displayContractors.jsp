@@ -29,8 +29,9 @@
 				<td>${contractor.size}</td>
 				<td>${contractor.rate}</td>
 				<td>${contractor.owner}</td>
-				<td><a href="deleteContractor?id=${contractor.id}">delete</a></td>
-				<td><a href="showUpdate?id=${contractor.id}">edit</a></td>
+				<td><a href="deleteContractor?id=${contractor.id}">Delete</a></td>
+				<td><a href="showUpdate?id=${contractor.id}">Update</a></td>
+				<td><a href="generatePdf?id=${contractor.id}">Report</a></td>
 			</tr>
 		</c:forEach>
 	</table>

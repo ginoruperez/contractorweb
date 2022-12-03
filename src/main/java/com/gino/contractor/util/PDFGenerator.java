@@ -15,6 +15,13 @@ import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
+/**
+ * This class is responsible for generating a pdf file that can be attached email to be sent by CSR to Customer
+ * 
+ * @author Gino Ruperez
+ *
+ */
+
 @Component
 public class PDFGenerator {
 	
@@ -31,8 +38,6 @@ public class PDFGenerator {
 			document.close();
 
 		} catch (FileNotFoundException | DocumentException e1) {
-			// TODO Auto-generated catch block
-			//e1.printStackTrace();
 			LOGGER.error("Exception in generateContractor ", e1);
 			
 
@@ -44,6 +49,9 @@ public class PDFGenerator {
 		PdfPTable table = new PdfPTable(2);
 
 		PdfPCell cell;
+		
+		Integer size=contractor.getSize();
+		
 
 		cell = new PdfPCell(new Phrase("Contractor Details"));
 		cell.setColspan(2);
@@ -57,6 +65,17 @@ public class PDFGenerator {
 
 		table.addCell("Specialties");
 		table.addCell(contractor.getSpecialties());
+		
+		table.addCell("Size");		
+		table.addCell(size.toString());
+		
+		table.addCell("Rate");		
+		table.addCell(contractor.getRate());
+		
+		table.addCell("Owner");		
+		table.addCell(contractor.getOwner());
+		
+		
 
 		return table;
 	}
