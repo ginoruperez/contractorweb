@@ -1,0 +1,6 @@
+com.gino.contractor
+com.gino.contractor.controllers
+com.gino.contractor.entities
+com.gino.contractor.repos
+com.gino.contractor.service
+com.gino.contractor.util

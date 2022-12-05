@@ -15,6 +15,9 @@ import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
+import java.awt.Desktop;
+import java.io.File;
+
 /**
  * This class is responsible for generating a pdf file that can be attached email to be sent by CSR to Customer
  * 
@@ -36,6 +39,10 @@ public class PDFGenerator {
 			document.open();
 			document.add(generateTable(contractor));
 			document.close();
+			
+			//try to open the file
+			openPdf(filePath);
+			
 
 		} catch (FileNotFoundException | DocumentException e1) {
 			LOGGER.error("Exception in generateContractor ", e1);
@@ -44,7 +51,49 @@ public class PDFGenerator {
 		}
 
 	}
+	/**
+	 * This method calls for external PDF application to open the generated pdf file 
+	 * 
+	 * @param file
+	 */
+	private void openPdf(String file) {
+		 try {
 
+				File pdfFile = new File(file);
+				if (pdfFile.exists()) {
+
+					if (Desktop.isDesktopSupported()) {
+						Desktop.getDesktop().open(pdfFile);
+					} else {
+						LOGGER.info("Awt Desktop is not supported retrying rundll32...");
+						
+						Process p = Runtime
+								   .getRuntime()
+								   .exec("rundll32 url.dll,FileProtocolHandler " + pdfFile);
+								p.waitFor();
+						
+					}
+
+				} else {
+					LOGGER.info("File does not exist!");
+					
+				}
+
+				LOGGER.info("Done!");
+
+			  } catch (Exception ex) {
+				ex.printStackTrace();
+			  }
+
+	}
+	
+
+	/**
+	 * This method will formatted the content of pdf based on contractor object
+	 * 
+	 * @param contractor
+	 * @return the PdfTable object
+	 */
 	private PdfPTable generateTable(Contractor contractor) {
 		PdfPTable table = new PdfPTable(2);
 
