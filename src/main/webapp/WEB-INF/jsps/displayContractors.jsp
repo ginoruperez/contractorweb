@@ -9,6 +9,10 @@
 </head>
 <body>
 	<h2>Contractors:</h2>
+	
+	<a href="showCreate" >Add Contractor</a>
+	<a href="index.html" >Back to Home Page</a>
+	
 	<table>
 		<tr>
 			<th>id</th>
