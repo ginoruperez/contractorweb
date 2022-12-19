@@ -32,7 +32,7 @@ INSERT INTO contractor (name,location,specialties,size,rate,owner) values ('Dogs
 INSERT INTO contractor (name,location,specialties,size,rate,owner) values ('Hamner & Tong', 'Smallville', 'Drywall, Roofing',10,'85.00','12345');
 
 
-CREATE TABLE ROLE 
+CREATE TABLE role 
 (
 ID INT NOT NULL AUTO_INCREMENT,
 NAME VARCHAR(20),
